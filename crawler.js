@@ -25,10 +25,17 @@ Apify.main(async () => {
 
       const title = $('title').text()
       const h1texts = []
-      $('h1').each((index, el) => {
-        h1texts.push({
-          text: $(el).text(),
-        })
+      $('tr td').each((index, el) => {
+        if ($(el).text() === '6/27') {
+          $(el).parent().children('td').each((index, el2) => {
+            $(el2).children('a').each((index, el3) => {
+              h1texts.push({
+                text: $(el2).text(),
+                href: $(el3).attr('href'),
+              })
+            })
+          })
+        }
       })
 
       //  ./apify_storage/datasets/default に結果をJSONで保存。

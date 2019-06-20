@@ -1,0 +1,23 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "This is web crawler by node.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ham0215/web_crawler_by_node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ham0215/web_crawler_by_node/issues"
+  },
+  "homepage": "https://github.com/ham0215/web_crawler_by_node#readme",
+  "dependencies": {
+    "apify": "^0.14.15"
+  }
+}

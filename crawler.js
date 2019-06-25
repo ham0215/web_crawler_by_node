@@ -25,6 +25,23 @@ Apify.main(async () => {
 
       const title = $('title').text()
       const h1texts = []
+      const indexes = []
+      $('#m6').find('.tableBody').find('tr').each((index, el) => {
+        $(el).children('td').each((index2, el2) => {
+          if ($(el2).text() === '6/27') {
+            indexes.push(index)
+          }
+        })
+      })
+      console.log(indexes)
+      $('#m6').find('.tableHead').find('tr').each((index, el) => {
+        if (indexes.indexOf(index) >= 0) {
+          $(el).children('td').each((index2, el2) => {
+            console.log($(el2).text())
+          })
+        }
+      })
+      /*
       $('tr td').each((index, el) => {
         if ($(el).text() === '6/27') {
           $(el).parent().children('td').each((index, el2) => {
@@ -37,13 +54,13 @@ Apify.main(async () => {
           })
         }
       })
+      */
 
       //  ./apify_storage/datasets/default に結果をJSONで保存。
       await Apify.pushData({
         url: request.url,
         title,
         h1texts,
-        html,
       })
     },
   })

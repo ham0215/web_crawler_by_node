@@ -2,6 +2,7 @@ const Crawler = require('crawler');
 
 let sendMessages = []
 const date = new Date();
+date.setHours(date.getHours() + 9);
 let today = `${date.getMonth() + 1}/${date.getDate()}`
 const targetId = `#m${date.getMonth() + 1}`
 

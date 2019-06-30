@@ -1,6 +1,12 @@
 const Crawler = require('crawler');
 
-let sendMessage = 'hello'
+let sendMessages = []
+const date = new Date();
+let today = `${date.getMonth() + 1}/${date.getDate()}`
+const targetId = `#m${date.getMonth() + 1}`
+
+console.log(today)
+console.log(targetId)
 
 const crawler = new Crawler({
   callback : (error, res, done) => {
@@ -8,22 +14,20 @@ const crawler = new Crawler({
       console.log(error);
     } else {
       const $ = res.$;
-      console.log($('title').text());
       const indexes = []
-      $('#m6').find('.tableBody').find('tr').each((index, el) => {
+      $(targetId).find('.tableBody').find('tr').each((index, el) => {
         $(el).children('td').each((index2, el2) => {
-          if ($(el2).text() === '6/27') {
+          if ($(el2).text() === today) {
             indexes.push(index)
           }
         })
       })
-      console.log(indexes)
-      $('#m6').find('.tableHead').find('tr').each((index, el) => {
+      $(targetId).find('.tableHead').find('tr').each((index, el) => {
         if (indexes.indexOf(index) >= 0) {
           $(el).children('td').each((index2, el2) => {
             console.log($(el2).text())
             console.log(`https://www.ipokiso.com${$(el2).find('a').attr('href')}`)
-            sendMessage = `https://www.ipokiso.com${$(el2).find('a').attr('href')}`
+            sendMessages.push(`${today}上場\n${$(el2).text()}\nhttps://www.ipokiso.com${$(el2).find('a').attr('href')}`)
           })
         }
       })
@@ -33,18 +37,22 @@ const crawler = new Crawler({
         channelAccessToken: process.env.token
       });
 
-      const message = {
-        type: 'text',
-        text: sendMessage
-      };
+      console.log(sendMessages);
 
-      client.pushMessage(process.env.group_id, message).then(() => {
-        console.log('done');
-      }).catch((err) => {
-        console.log('error');
-        console.log(err);
-      });
-      console.log('donedone');
+      for(let i in sendMessages) {
+        console.log(sendMessages[i]);
+        const message = {
+          type: 'text',
+          text: sendMessages[i]
+        };
+
+        client.pushMessage(process.env.group_id, message).then(() => {
+          console.log('push message done');
+        }).catch((err) => {
+          console.log('push message error');
+          console.log(err);
+        });
+      }
     }
     done();
   }

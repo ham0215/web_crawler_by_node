@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/ham0215/web_crawler_by_node#readme",
   "dependencies": {
-    "apify": "^0.14.15"
+    "@line/bot-sdk": "^6.7.1",
+    "apify": "^0.14.15",
+    "crawler": "^1.2.1"
   }
 }

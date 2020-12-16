@@ -34,9 +34,9 @@ const crawler = new Crawler({
       })
       const line = require('@line/bot-sdk');
 
-      const client = new line.Client({
-        channelAccessToken: process.env.token
-      });
+      //const client = new line.Client({
+      //  channelAccessToken: process.env.token
+      //});
 
       console.log(sendMessages);
 
@@ -47,12 +47,12 @@ const crawler = new Crawler({
           text: sendMessages[i]
         };
 
-        client.pushMessage(process.env.group_id, message).then(() => {
-          console.log('push message done');
-        }).catch((err) => {
-          console.log('push message error');
-          console.log(err);
-        });
+        // client.pushMessage(process.env.group_id, message).then(() => {
+        //   console.log('push message done');
+        // }).catch((err) => {
+        //   console.log('push message error');
+        //   console.log(err);
+        // });
       }
     }
     done();

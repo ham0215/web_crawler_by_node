@@ -18,9 +18,9 @@
   },
   "homepage": "https://github.com/ham0215/web_crawler_by_node#readme",
   "dependencies": {
-    "@line/bot-sdk": "^6.7.1",
-    "apify": "^0.14.15",
-    "crawler": "^1.2.1"
+    "@google-cloud/pubsub": "^2.7.0",
+    "@line/bot-sdk": "7.2.0",
+    "crawler": "^1.3.0"
   },
   "devDependencies": {
     "npm-check-updates": "^10.2.5"
